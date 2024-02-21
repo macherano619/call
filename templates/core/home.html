@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  <main class="px-3">
+    <h1>Soy Buho</h1>
+
+    {% if request.user.is_authenticated %}
+
+    <p class="lead">{% if request.user.is_authenticated %}Bienvenido {{ user.username | upper }}, {% endif %}.</p>
+
+    {% else %}
+
+      <p class="lead">Prepárate para el examen Transformar y obtén los mejores puntajes para ingresar a la Universidad. Puedes tener la seguridad de que te preparas con los mejores, ya que contamos con docentes, de la Escuela Politécnica Nacional, y un método de aprendizaje único con el que cubrimos la preparación en todas las principales materias.</p>
+
+    {% endif %}
+
+  
+  </main>
+{% endblock %}
+

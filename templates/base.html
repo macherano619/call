@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es" class="h-100">
+
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.104.2">
+  <title>Preuniversitario Politécnica – #SoyBuho</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/cover/">
+  <link href={% static 'core/css/bootstrap.min.css' %} rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
+
+  <link rel="stylesheet" href="./css/b4.side-bar.css">
+  <link href={% static 'core/css/b4.side-bar.css' %} rel="stylesheet">
+
+  <link href={% static 'core/css/cover.css' %} rel="stylesheet">
+  <link href={% static 'core/css/custom.css' %} rel="stylesheet">
+  
+ 
+
+</head>
+
+<body class="d-flex h-100 text-center text-bg-light">
+ 
+  {% if request.user.is_authenticated %}
+  <div class="flex-shrink-0 p-3 bg-white" style="width: 200px;">
+    
+    <h2 class="d-flex align-items-mid pb-3 mb-3 link-dark text-decoration-none border-bottom">Dashboard</h2>
+    
+    <div class="nav-item dropdown ">
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="trabajadoresDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Gestion Asesores
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="trabajadoresDropdown">
+          <li><a class="dropdown-item" href={% url 'trabajador' %}>Agregar Asesor</a></li>
+          <li><a class="dropdown-item" href="#">Editar Trabajador</a></li>
+          <li><a class="dropdown-item" href="#">Eliminar Trabajador</a></li>
+        </ul>
+      </div>
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Overview
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+    <a class="nav-link" href="#">Updates</a>
+    <a class="nav-link" href="#">Reports</a>
+
+    <div class="navbar-nav">
+    
+    </div>
+    <div class="position-sticky" style="top: 500rem;">
+      <hr>
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong>{% if request.user.is_authenticated %}{{ user.username | upper }}{% endif %}</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href={% url 'exit' %}>Salir</a></li>
+        </ul>
+      </div>
+      <hr>
+    </div>
+  </div>
+  {% endif %}
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+  {% if not request.user.is_authenticated %}
+  <header class="mb-auto">
+    <div class="bodyContent">
+      <h3 class="float-md-start mb-0">Preuniversitario Politécnica</h3>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href={% url 'home' %}>Inicio</a>
+        {% if request.user.is_authenticated %}
+        <a class="nav-link fw-bold py-1 px-0" href={% url 'trabajador' %}>Trabajador</a>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+          <a class="nav-link fw-bold py-1 px-0" href={% url 'exit' %}>Salir</a>
+        {% else %}
+          <a class="nav-link fw-bold py-1 px-0" href={% url 'login' %}>Ingresar</a>
+          
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+  {% endif %}
+  {% block content %}{% endblock %}
+
+
+
+  <footer class="mt-auto text-white-50">
+    <a href="https://www.politecnica.ec/" class="text-white">Soy Buho</a>
+  </footer>
+
+
+  </body>
+      <!-- javascript includes -->
+      <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+      crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
+      crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+       crossorigin="anonymous"></script>
+
+    <script src="./js/b4.side-bar.js"></script>
+</html>
